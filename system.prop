@@ -1,9 +1,9 @@
 #
-# system.prop for Lenovo K4 Note
+# system.prop for Blu Vivo 5R
 #
 
 # RIL
-rild.libpath=/system/lib64/mtk-ril.so
+rild.libpath=mtk-ril.so
 rild.libargs=-d /dev/ttyC0
 
 # Wifi

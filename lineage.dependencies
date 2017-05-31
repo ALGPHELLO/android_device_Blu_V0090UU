@@ -1,14 +1,8 @@
 [
   {
     "remote": "github",
-    "repository": "mohancm100/android_vendor_lenovo_A7010a48",
-    "target_path": "vendor/lenovo/A7010a48",
-    "branch": "LineageOS-14.1"
-  },
-  {
-    "remote": "github",
-    "repository": "mohancm100/android_kernel_lenovo_A7010a48",
-    "target_path": "kernel/lenovo/A7010a48",
+    "repository": "killcmd/android_vendor_Blu_V0090UU",
+    "target_path": "vendor/Blu/V0090UU",
     "branch": "LineageOS-14.1"
   }
 ] 
