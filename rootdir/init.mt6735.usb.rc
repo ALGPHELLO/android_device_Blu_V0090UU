@@ -1,10 +1,15 @@
+on early-init
+   write /sys/module/musb_hdrc/parameters/kernel_init_done 1
+
 on boot
-    setprop sys.usb.vid 0E8D
-    write /sys/class/android_usb/android0/iManufacturer MediaTek
+# Gionee yanjun modify for change USB VID
+#   setprop sys.usb.vid 0E8D
+    setprop sys.usb.vid 271D
+    write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
     write /sys/class/android_usb/android0/f_rndis/wceis 1
-    write /sys/class/android_usb/android0/f_rndis/manufacturer MediaTek
+    write /sys/class/android_usb/android0/f_rndis/manufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/f_rndis/vendorID ${sys.usb.vid}
 
 on fs
@@ -40,7 +45,9 @@ on property:sys.usb.config=none
 on property:sys.usb.config=acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2007
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3006
+#   write /sys/class/android_usb/android0/idProduct 2007
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/bDeviceClass 02
@@ -51,7 +58,9 @@ on property:sys.usb.config=acm
 on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 201C
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3C01
+#   write /sys/class/android_usb/android0/idProduct 201C
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -61,7 +70,9 @@ on property:sys.usb.config=adb
 on property:sys.usb.config=adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200E
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 400E
+#    write /sys/class/android_usb/android0/idProduct 200E
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -72,7 +83,9 @@ on property:sys.usb.config=adb,acm
 on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2002
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 0001
+#   write /sys/class/android_usb/android0/idProduct 2002
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
@@ -81,7 +94,9 @@ on property:sys.usb.config=mass_storage
 on property:sys.usb.config=mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2003
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3C03
+#   write /sys/class/android_usb/android0/idProduct 2003
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -91,7 +106,9 @@ on property:sys.usb.config=mass_storage,adb
 on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2008
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4008
+#    write /sys/class/android_usb/android0/idProduct 2008
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
@@ -100,7 +117,9 @@ on property:sys.usb.config=mtp
 on property:sys.usb.config=mtp,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2012
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4012
+#   write /sys/class/android_usb/android0/idProduct 2012
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -110,7 +129,9 @@ on property:sys.usb.config=mtp,acm
 on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 201D
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3C02
+#    write /sys/class/android_usb/android0/idProduct 201D
     write /sys/class/android_usb/android0/functions mtp,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -120,7 +141,9 @@ on property:sys.usb.config=mtp,adb
 on property:sys.usb.config=mtp,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200A
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 400A
+#    write /sys/class/android_usb/android0/idProduct 200A
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -131,7 +154,9 @@ on property:sys.usb.config=mtp,adb,acm
 on property:sys.usb.config=mtp,mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2016
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4016
+#   write /sys/class/android_usb/android0/idProduct 2016
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
@@ -140,7 +165,9 @@ on property:sys.usb.config=mtp,mass_storage
 on property:sys.usb.config=mtp,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2017
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4017
+#   write /sys/class/android_usb/android0/idProduct 2017
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -150,7 +177,9 @@ on property:sys.usb.config=mtp,mass_storage,adb
 on property:sys.usb.config=ptp
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200B
+    #Gionee heqianjin modify for CR01756448 change USB PID
+    write /sys/class/android_usb/android0/idProduct 0C03
+    #write /sys/class/android_usb/android0/idProduct 200B
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
@@ -159,7 +188,9 @@ on property:sys.usb.config=ptp
 on property:sys.usb.config=ptp,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2013
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4013
+#   write /sys/class/android_usb/android0/idProduct 2013
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -169,7 +200,9 @@ on property:sys.usb.config=ptp,acm
 on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200C
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 400C
+#   write /sys/class/android_usb/android0/idProduct 200C
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -179,7 +212,9 @@ on property:sys.usb.config=ptp,adb
 on property:sys.usb.config=ptp,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200D
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 400D
+#   write /sys/class/android_usb/android0/idProduct 200D
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -199,7 +234,9 @@ on property:sys.usb.config=ptp,mass_storage
 on property:sys.usb.config=ptp,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2014
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4014
+#   write /sys/class/android_usb/android0/idProduct 2014
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -209,7 +246,9 @@ on property:sys.usb.config=ptp,mass_storage,adb
 on property:sys.usb.config=rndis
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2004
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3003
+#   write /sys/class/android_usb/android0/idProduct 2004
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/bDeviceClass 224
     write /sys/class/android_usb/android0/enable 1
@@ -219,7 +258,9 @@ on property:sys.usb.config=rndis
 on property:sys.usb.config=rndis,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2011
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4011
+#   write /sys/class/android_usb/android0/idProduct 2011
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -229,7 +270,9 @@ on property:sys.usb.config=rndis,acm
 on property:sys.usb.config=rndis,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2005
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3004
+#   write /sys/class/android_usb/android0/idProduct 2005
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -239,7 +282,9 @@ on property:sys.usb.config=rndis,adb
 on property:sys.usb.config=rndis,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2010
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4010
+#   write /sys/class/android_usb/android0/idProduct 2010
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -250,7 +295,9 @@ on property:sys.usb.config=rndis,adb,acm
 on property:sys.usb.config=mass_storage,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200F
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 400F
+#   write /sys/class/android_usb/android0/idProduct 200F
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -260,7 +307,9 @@ on property:sys.usb.config=mass_storage,acm
 on property:sys.usb.config=mass_storage,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2006
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 3005
+#   write /sys/class/android_usb/android0/idProduct 2006
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -271,7 +320,9 @@ on property:sys.usb.config=mass_storage,adb,acm
 on property:sys.usb.config=mtp,mass_storage,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2018
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4018
+#   write /sys/class/android_usb/android0/idProduct 2018
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -281,7 +332,9 @@ on property:sys.usb.config=mtp,mass_storage,acm
 on property:sys.usb.config=mtp,mass_storage,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2019
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 4019
+#   write /sys/class/android_usb/android0/idProduct 2019
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -292,7 +345,9 @@ on property:sys.usb.config=mtp,mass_storage,adb,acm
 on property:sys.usb.config=ptp,mass_storage,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 201A
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 401A
+#   write /sys/class/android_usb/android0/idProduct 201A
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -302,7 +357,9 @@ on property:sys.usb.config=ptp,mass_storage,acm
 on property:sys.usb.config=ptp,mass_storage,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 201B
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 401B
+#   write /sys/class/android_usb/android0/idProduct 201B
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -374,11 +431,6 @@ on property:sys.usb.config=charging
     setprop sys.usb.charging yes
 
 on property:sys.usb.charging=yes
-    write /sys/class/android_usb/android0/enable 0
-	write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-	write /sys/class/android_usb/android0/idProduct 2008
-	write /sys/class/android_usb/android0/functions mtp
-    write /sys/class/android_usb/android0/enable 1
     write /sys/devices/platform/mt_usb/cmode 2
 
 on property:sys.usb.charging=no
@@ -388,7 +440,9 @@ on property:sys.usb.charging=no
 on property:sys.usb.config=bicr
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2002
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 0001
+#   write /sys/class/android_usb/android0/idProduct 2002
     write /sys/class/android_usb/android0/functions mass_storage
     write /sys/class/android_usb/android0/f_mass_storage/bicr 1
     write /sys/class/android_usb/android0/f_mass_storage/lun/file "/dev/block/loop0"
@@ -399,7 +453,9 @@ on property:sys.usb.config=bicr
 on property:sys.usb.config=bicr,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2003
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 0C03
+#   write /sys/class/android_usb/android0/idProduct 2003
     write /sys/class/android_usb/android0/functions mass_storage,adb
     write /sys/class/android_usb/android0/f_mass_storage/bicr 1
     write /sys/class/android_usb/android0/f_mass_storage/lun/file "/dev/block/loop0"
@@ -411,7 +467,9 @@ on property:sys.usb.config=bicr,adb
 on property:sys.usb.config=bicr,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2006
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 0005
+#  write /sys/class/android_usb/android0/idProduct 2006
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions mass_storage,adb,acm
     write /sys/class/android_usb/android0/f_mass_storage/bicr 1
@@ -424,7 +482,9 @@ on property:sys.usb.config=bicr,adb,acm
 on property:sys.usb.config=bicr,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 200F
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 400F
+#   write /sys/class/android_usb/android0/idProduct 200F
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions mass_storage,acm
     write /sys/class/android_usb/android0/f_mass_storage/bicr 1
@@ -466,17 +526,60 @@ on property:sys.usb.config=eem,adb
 on property:sys.usb.config=eem,adb,acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2030
+# Gionee huping modify for CR01473212 change USB PID
+    write /sys/class/android_usb/android0/idProduct 2029
+#   write /sys/class/android_usb/android0/idProduct 2030
     write /sys/class/android_usb/android0/f_acm/instances 1
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
+# USB midi configuration
+on property:sys.usb.config=midi
+	write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+	write /sys/class/android_usb/android0/idProduct 2046
+	write /sys/class/android_usb/android0/functions ${sys.usb.config}
+	write /sys/class/android_usb/android0/enable 1
+	setprop sys.usb.state ${sys.usb.config}
+
+# USB midi configuration, with acm
+on property:sys.usb.config=midi,acm
+	write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+	write /sys/class/android_usb/android0/idProduct 2047
+	write /sys/class/android_usb/android0/f_acm/instances 1
+	write /sys/class/android_usb/android0/functions ${sys.usb.config}
+	write /sys/class/android_usb/android0/enable 1
+	setprop sys.usb.state ${sys.usb.config}
+
+# USB midi configuration, with adb
+on property:sys.usb.config=midi,adb
+	write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+	write /sys/class/android_usb/android0/idProduct 2048
+	write /sys/class/android_usb/android0/functions ${sys.usb.config}
+	write /sys/class/android_usb/android0/enable 1
+	start adbd
+	setprop sys.usb.state ${sys.usb.config}
+
+# USB midi configuration, with adb acm
+on property:sys.usb.config=midi,adb,acm
+	write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+	write /sys/class/android_usb/android0/idProduct 2049
+	write /sys/class/android_usb/android0/f_acm/instances 1
+	write /sys/class/android_usb/android0/functions ${sys.usb.config}
+	write /sys/class/android_usb/android0/enable 1
+	start adbd
+	setprop sys.usb.state ${sys.usb.config}
+
+
 #C2K bypass
 on property:sys.usb.config=via_bypass
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
     write /sys/class/android_usb/android0/idProduct 2031
     write /sys/devices/platform/mt_usb/saving 1
     write /sys/class/android_usb/android0/functions via_modem,via_ets,via_atc
@@ -486,7 +589,7 @@ on property:sys.usb.config=via_bypass
 #C2K bypass,adb
 on property:sys.usb.config=via_bypass,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
     write /sys/class/android_usb/android0/idProduct 2032
     write /sys/devices/platform/mt_usb/saving 1
     write /sys/class/android_usb/android0/functions via_modem,via_ets,via_atc,adb
@@ -497,7 +600,7 @@ on property:sys.usb.config=via_bypass,adb
 #C2K bypass,acm
 on property:sys.usb.config=via_bypass,acm
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
     write /sys/class/android_usb/android0/idProduct 2033
     write /sys/devices/platform/mt_usb/saving 1
     write /sys/class/android_usb/android0/functions via_modem,via_ets,via_atc,acm
@@ -507,7 +610,7 @@ on property:sys.usb.config=via_bypass,acm
 #C2K bypass,adb,acm
 on property:sys.usb.config=via_bypass,adb,acm
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
     write /sys/class/android_usb/android0/idProduct 2034
     write /sys/devices/platform/mt_usb/saving 1
     write /sys/class/android_usb/android0/functions via_modem,via_ets,via_atc,adb,acm
@@ -518,7 +621,7 @@ on property:sys.usb.config=via_bypass,adb,acm
 #C2K rndis,bypass
 on property:sys.usb.config=rndis,via_bypass
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
     write /sys/class/android_usb/android0/idProduct 2036
     write /sys/devices/platform/mt_usb/saving 1
     write /sys/class/android_usb/android0/functions rndis,via_ets
@@ -528,7 +631,7 @@ on property:sys.usb.config=rndis,via_bypass
 #C2K rndis,bypass,adb
 on property:sys.usb.config=rndis,via_bypass,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
     write /sys/class/android_usb/android0/idProduct 2037
     write /sys/devices/platform/mt_usb/saving 1
     write /sys/class/android_usb/android0/functions rndis,via_ets,adb
@@ -537,26 +640,26 @@ on property:sys.usb.config=rndis,via_bypass,adb
     setprop sys.usb.state ${sys.usb.config}
 
 #C2K rndis,bypass,acm
-	on property:sys.usb.config=rndis,via_bypass,acm
-	write /sys/class/android_usb/android0/enable 0
-	write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
-	write /sys/class/android_usb/android0/idProduct 2038
-	write /sys/devices/platform/mt_usb/saving 1
-	write /sys/class/android_usb/android0/functions rndis,via_ets,acm
-	write /sys/class/android_usb/android0/enable 1
-	setprop sys.usb.state ${sys.usb.config}
+on property:sys.usb.config=rndis,via_bypass,acm
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+    write /sys/class/android_usb/android0/idProduct 2038
+    write /sys/devices/platform/mt_usb/saving 1
+    write /sys/class/android_usb/android0/functions rndis,via_ets,acm
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
 
 #C2K rndis,bypass,adb,acm
-	on property:sys.usb.config=rndis,via_bypass,adb,acm
-	write /sys/class/android_usb/android0/enable 0
-	write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
-	write /sys/class/android_usb/android0/idProduct 2039
-	write /sys/devices/platform/mt_usb/saving 1
-	write /sys/class/android_usb/android0/functions rndis,via_ets,adb,acm
-	write /sys/class/android_usb/android0/enable 1
-	start adbd
-	setprop sys.usb.state ${sys.usb.config}
-    
+on property:sys.usb.config=rndis,via_bypass,adb,acm
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+    write /sys/class/android_usb/android0/idProduct 2039
+    write /sys/devices/platform/mt_usb/saving 1
+    write /sys/class/android_usb/android0/functions rndis,via_ets,adb,acm
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
 #43.acm third port for bt
 on property:sys.usb.config=acm_third
     write /sys/class/android_usb/android0/enable 0
@@ -591,31 +694,8 @@ on property:sys.usb.config=gs3,dual_acm
     start adbd
     setprop sys.usb.state ${sys.usb.config}
     setprop sys.usb.acm_idx 1,4
-    
-on property:sys.usb.config=gs1gs3
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 2029
-    write /sys/class/android_usb/android0/f_acm/port_index 2,4
-    write /sys/devices/platform/mt_usb/saving 1
-    write /sys/class/android_usb/android0/functions mass_storage,adb,acm
-    write /sys/class/android_usb/android0/enable 1
-    start adbd
-    setprop sys.usb.state ${sys.usb.config}
-    setprop sys.usb.acm_idx 2,4
 
-on property:sys.usb.config=gs1gs3,dual_acm
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
-    write /sys/class/android_usb/android0/idProduct 202F
-    write /sys/class/android_usb/android0/f_acm/port_index 1,2,4
-    write /sys/devices/platform/mt_usb/saving 1
-    write /sys/class/android_usb/android0/functions adb,acm
-    write /sys/class/android_usb/android0/enable 1
-    start adbd
-    setprop sys.usb.state ${sys.usb.config}
-    setprop sys.usb.acm_idx 1,2,4
-    
+
 ###############################################
 
 on property:sys.usb.config=mass_storage,dual_acm
@@ -626,7 +706,7 @@ on property:sys.usb.config=mass_storage,dual_acm
     write /sys/class/android_usb/android0/functions mass_storage,acm
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
-    
+
 on property:sys.usb.config=mtp,dual_acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
@@ -644,7 +724,7 @@ on property:sys.usb.config=ptp,dual_acm
     write /sys/class/android_usb/android0/functions ptp,acm
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
-   
+
 on property:sys.usb.config=rndis,dual_acm
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
@@ -694,6 +774,52 @@ on property:sys.usb.config=rndis,adb,dual_acm
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
+### add new configuration to compatible with emdlogger usage after Jade C2K solution
+### begin ###
+on property:sys.usb.config=mtp,gs3
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.vid}
+    write /sys/class/android_usb/android0/idProduct 200A
+    write /sys/class/android_usb/android0/f_acm/port_index 4
+    write /sys/class/android_usb/android0/functions mtp,adb,acm
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+    setprop sys.usb.acm_idx 4
+
+on property:sys.usb.config=via_bypass,adb,gs1gs3
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idProduct 2034
+    write /sys/devices/platform/mt_usb/saving 1
+    write /sys/class/android_usb/android0/f_acm/port_index 4
+    write /sys/class/android_usb/android0/functions via_modem,via_ets,via_atc,adb,acm
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+    setprop sys.usb.acm_idx 4
+
+on property:sys.usb.config=rndis,via_bypass,adb,gs1gs3
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor ${sys.usb.config}
+    write /sys/class/android_usb/android0/idProduct 2039
+    write /sys/devices/platform/mt_usb/saving 1
+    write /sys/class/android_usb/android0/f_acm/port_index 4
+    write /sys/class/android_usb/android0/functions rndis,via_ets,adb,acm
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+    setprop sys.usb.acm_idx 4
+
+on property:sys.usb.config=mtp,gs1gs3
+    setprop sys.usb.config mtp,gs3
+
+on property:sys.usb.config=gs1gs3
+    setprop sys.usb.config gs3
+### end ###
+
+
+
 ###############################################
 
 
@@ -703,7 +829,10 @@ on property:sys.usb.bicr=yes
 
 on property:sys.usb.bicr=no
     write /sys/class/android_usb/android0/f_mass_storage/bicr 0
-    write /sys/class/android_usb/android0/f_mass_storage/lun/file "0"
+    write /sys/class/android_usb/android0/f_mass_storage/lun/file "off"
+
+on property:sys.usb.config=*
+    write /sys/class/android_usb/android0/log ${sys.usb.config}
 
 on property:mediatek.usb.port.mode=usb
       write /sys/devices/platform/mt_usb/portmode 0
