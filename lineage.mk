@@ -18,17 +18,17 @@
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, $(LOCAL_PATH)/device_V0090UU.mk)
+$(call inherit-product, $(LOCAL_PATH)/device_gnsz6753_66_n.mk)
 
 # Device display
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
 # Device identifier
-PRODUCT_BRAND := Blu
-PRODUCT_DEVICE := V0090UU
-PRODUCT_MANUFACTURER := Blu
-PRODUCT_MODEL := Blu Vivo 5R
-PRODUCT_NAME := lineage_V0090UU
-PRODUCT_RELEASE_NAME := V0090UU
+PRODUCT_BRAND := Condor
+PRODUCT_DEVICE := gnsz6753_66_n
+PRODUCT_MANUFACTURER := Condor
+PRODUCT_MODEL := Condor Allure A8
+PRODUCT_NAME := lineage_gnsz6753_66_n
+PRODUCT_RELEASE_NAME := gnsz6753_66_n
 PRODUCT_RESTRICT_VENDOR_FILES := false

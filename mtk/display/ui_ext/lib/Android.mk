@@ -48,8 +48,8 @@ LOCAL_SRC_FILES:= \
 	RefBaseDump.cpp
 
 LOCAL_C_INCLUDES:= \
-	hardware/lenovo/graphics/ui_ext/inc \
-	hardware/lenovo/graphics/gralloc_extra/include \
+	hardware/condor/graphics/ui_ext/inc \
+	hardware/condor/graphics/gralloc_extra/include \
 	external/libpng \
 	external/zlib \
 	external/skia/src/images \

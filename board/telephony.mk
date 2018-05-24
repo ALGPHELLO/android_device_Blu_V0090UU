@@ -1,3 +1,3 @@
 # RIL
-BOARD_RIL_CLASS := ../../../device/lenovo/A7010a48/ril
+BOARD_RIL_CLASS := ../../../device/condor/gnsz6753_66_n/ril
 BOARD_CONNECTIVITY_MODULE := conn_soc

@@ -15,13 +15,13 @@
 #
 
 # Device path
-LOCAL_PATH := device/Blu/V0090UU
+LOCAL_PATH := device/condor/gnsz6753_66_n
 
 # Device board elements
 include $(LOCAL_PATH)/board/*.mk
 
 # Device vendor board
--include vendor/Blu/V0090UU/BoardConfigVendor.mk
+-include vendor/condor/gnsz6753_66_n/BoardConfigVendor.mk
 
 #######################################################################
 

@@ -1,8 +1,8 @@
 [
   {
     "remote": "github",
-    "repository": "killcmd/android_vendor_Blu_V0090UU",
-    "target_path": "vendor/Blu/V0090UU",
+    "repository": "ALGPHELLO/android_vendor_condor_gnsz6753_66_n",
+    "target_path": "vendor/condor/gnsz6753_66_n",
     "branch": "LineageOS-14.1"
   }
 ] 
